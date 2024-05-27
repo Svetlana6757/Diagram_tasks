@@ -1,0 +1,24 @@
+
+import scrapy
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+
+class DivannewparsSpider(scrapy.Spider):
+    name = "divannewpars"
+    allowed_domains = ["https://divan.ru"]
+    start_urls = ["https://divan.ru/category/divany-i-kresla?page=1",
+                  "https://divan.ru/category/divany-i-kresla?page=2",
+                  "https://divan.ru/category/divany-i-kresla?page=3"]
+
+    def parse(self, response):
+        divans = response.css('div._Ud0k')
+        for divan in divans:
+            yield
+        {'name': divan.css('div.lsooF span::text').get(),
+         'price': divan.css('div.pY3d2 span::text').get(),
+         'url': divan.css('a').attrib['href']
+         }
+
+
