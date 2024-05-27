@@ -8,9 +8,7 @@ import matplotlib.pyplot as plt
 class DivannewparsSpider(scrapy.Spider):
     name = "divannewpars"
     allowed_domains = ["https://divan.ru"]
-    start_urls = ["https://divan.ru/category/divany-i-kresla?page=1",
-                  "https://divan.ru/category/divany-i-kresla?page=2",
-                  "https://divan.ru/category/divany-i-kresla?page=3"]
+    start_urls = ["https://divan.ru/category/divany-i-kresla"]
 
     def parse(self, response):
         divans = response.css('div._Ud0k')
